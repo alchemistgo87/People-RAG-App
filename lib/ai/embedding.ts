@@ -43,18 +43,31 @@ export const findRelevantContent = async ({
   person: string | null;
   relation: string | null;
 }) => {
-  console.log(`Searching ${question} for ${person} with relation ${relation}`);
+  const capitalizedPerson = person
+    ? person.replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())
+    : null;
+
+  const lowerCasedRelation = relation
+    ? relation.replace(/(^\w|\s\w)/g, (m) => m.toLowerCase())
+    : null;
+
+  console.log(
+    `Searching ${question} for ${capitalizedPerson} with relation ${lowerCasedRelation}`
+  );
 
   const p = await db
     .select({ id: people.id })
     .from(people)
     .where(
-      person && relation
-        ? and(eq(people.name, person), eq(people.relation, relation))
-        : person
-        ? eq(people.name, person)
-        : relation
-        ? eq(people.relation, relation)
+      capitalizedPerson && lowerCasedRelation
+        ? and(
+            eq(people.name, capitalizedPerson),
+            eq(people.relation, lowerCasedRelation)
+          )
+        : capitalizedPerson
+        ? eq(people.name, capitalizedPerson)
+        : lowerCasedRelation
+        ? eq(people.relation, lowerCasedRelation)
         : undefined
     )
     .limit(1)

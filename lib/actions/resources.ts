@@ -16,20 +16,35 @@ export const createResource = async ({
   personName: string;
   relation: string;
 }) => {
-  console.log(`Creating resource for ${personName} with relation ${relation}`);
+  const capitalizedPerson = personName.replace(/(^\w|\s\w)/g, (m) =>
+    m.toUpperCase()
+  );
+
+  const lowerCasedRelation = relation.replace(/(^\w|\s\w)/g, (m) =>
+    m.toLowerCase()
+  );
+
+  console.log(
+    `Creating resource for ${capitalizedPerson} with relation ${lowerCasedRelation}`
+  );
   try {
     var person: any;
     [person] = await db
       .select({ id: people.id })
       .from(people)
-      .where(and(eq(people.name, personName), eq(people.relation, relation)))
+      .where(
+        and(
+          eq(people.name, capitalizedPerson),
+          eq(people.relation, lowerCasedRelation)
+        )
+      )
       .limit(1);
     if (!person) {
       [person] = await db
         .insert(people)
-        .values({ name: personName, relation })
+        .values({ name: capitalizedPerson, relation: lowerCasedRelation })
         .returning();
-      console.log('Added new person: ' + person);
+      console.log('Added new person: ', person);
     }
     const [resource] = await db
       .insert(resources)
