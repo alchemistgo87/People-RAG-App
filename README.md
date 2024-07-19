@@ -1,5 +1,7 @@
 # People RAG App (using Vercel AI SDK)
 
+https://github.com/user-attachments/assets/9437fd11-c447-4983-a892-4da033e22359
+
 A chatbot designed to not only store but also retrieve and provide information about your loved ones, such as relatives and friends. This intelligent system will only respond with data about individuals that are present in its extensive knowledge base. It's a user-friendly tool that allows you to easily access and store details about the people you care about.
 
 This project uses the following stack:
