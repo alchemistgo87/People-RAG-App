@@ -2,7 +2,9 @@
 
 https://github.com/user-attachments/assets/9437fd11-c447-4983-a892-4da033e22359
 
-A chatbot designed to not only store but also retrieve and provide information about your loved ones, such as relatives and friends. This intelligent system will only respond with data about individuals that are present in its extensive knowledge base. It's a user-friendly tool that allows you to easily access and store details about the people you care about.
+A chatbot to store and retrieve information and preferences of your relatives and friends. This intelligent system will only respond with data about people that are present in its knowledge base. You can add information about a relative in a simple chat format and the tool will understand and segregate the information before storing it in the database. 
+
+Example Usecase: You can ask what to buy for a friend (whose details are already present in the system) on his/her birthday.
 
 This project uses the following stack:
 
